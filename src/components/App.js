@@ -15,23 +15,10 @@ class App extends Component {
     }
   }
 
-  render() {
-    return (
-      <div className="App">
-        <AppHeader />
-        <AppMenu>
-          <AppMenuItem onClick={this.openBooksPage}>Available books</AppMenuItem>
-          <AppMenuItem onClick={this.openCartPage}>Your cart</AppMenuItem>
-        </AppMenu>
-        {this.renderPage()}
-      </div>
-    )
-  }
-
   renderPage() {
     switch(this.state.page) {
       case "books":
-        return <Books openBookPage={this.openBookPage} />
+        return <Books openBookPage={this.openBookPage} bookStore={this.props.bookStore} />
       case "book":
         return <BookDetails book={this.state.selectedBook} />
       case "cart":
@@ -61,6 +48,20 @@ class App extends Component {
       selectedBook: null
     })
   }
+
+  render() {
+    return (
+      <div className="App">
+        <AppHeader />
+        <AppMenu>
+          <AppMenuItem onClick={this.openBooksPage}>Available books</AppMenuItem>
+          <AppMenuItem onClick={this.openCartPage}>Your cart</AppMenuItem>
+        </AppMenu>
+        {this.renderPage()}
+      </div>
+    )
+  }
+
 }
 
 const AppHeader = () => (

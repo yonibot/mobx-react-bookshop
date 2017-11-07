@@ -1,4 +1,5 @@
 import Book from "../models/Book";
+import {observable, action, computed} from 'mobx';
 
 class BookStore {
   @observable isLoading = false;
@@ -13,7 +14,7 @@ class BookStore {
     return books.sort((a,b) => {
       return a.name > b.name
         ? 1
-        : a.name == b.name
+        : a.name === b.name
           ? 0
           : -1
     })
