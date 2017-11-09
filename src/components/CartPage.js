@@ -2,9 +2,6 @@ import React, {children} from 'react'
 import './CartPage.css'
 import {observer} from 'mobx-react';
 
-function updateQuantity(e) {
-  this.quantity = parseInt(e.target.value);
-}
 
 const CartItem = observer(({entry}) => {
   const {book} = entry;
@@ -43,5 +40,9 @@ const CartPage = observer(({cartStore}) => (
     <button disabled="disabled">Submit order</button>
   </section>
 ))
+
+function updateQuantity(e) {
+  this.quantity = parseInt(e.target.value, 10);
+}
 
 export default CartPage

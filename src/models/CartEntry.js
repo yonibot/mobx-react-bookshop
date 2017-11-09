@@ -10,7 +10,7 @@ class CartEntry {
   }
 
   @computed get price() {
-    return this.quantity * this.price;
+    return this.quantity * this.book.price;
   }
 }
 
