@@ -1,6 +1,6 @@
 import React, {children} from 'react'
 import './CartPage.css'
-import {observer} from 'mobx-react';
+import {observer, inject} from 'mobx-react';
 
 
 const CartItem = observer(({entry}) => {
@@ -26,11 +26,11 @@ const CartList = observer(({entries, children}) => (
   </section>
 ))
 
-const CartPage = observer(({cartStore}) => (
+const CartPage = inject("cartStore")(observer(({cartStore}) => (
   <section className="Page-cart">
     <h2>Your cart</h2>
     <CartList>
-      {cartStore.entries.map(entry => (
+      {this.props.cartStore.entries.map(entry => (
         <CartItem entry={entry} key={entry.book.id} />
       ))}
     </CartList>
@@ -39,7 +39,7 @@ const CartPage = observer(({cartStore}) => (
     <p><b>Total: 108 €</b></p>
     <button disabled="disabled">Submit order</button>
   </section>
-))
+)))
 
 function updateQuantity(e) {
   this.quantity = parseInt(e.target.value, 10);

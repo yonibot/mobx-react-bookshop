@@ -4,6 +4,7 @@ import App from './components/App'
 import './index.css'
 import BookStore from './stores/BookStore';
 import CartStore from './stores/CartStore';
+import {Provider} from 'mobx-react';
 
 const fetcher = url => {
   return window.fetch(url).then(r=>r.json());
@@ -17,7 +18,9 @@ bookStore.loadBooks();
 window.cartStore = cartStore;
 
 ReactDOM.render(
-  <App bookStore={bookStore} cartStore={cartStore} />,
+  <Provider bookStore={bookStore} cartStore={cartStore}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 )
 

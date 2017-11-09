@@ -7,11 +7,10 @@ import BookDetails from "./BookDetails"
 import CartPage from "./CartPage";
 import {observer} from 'mobx-react';
 
-const AppHeader = observer(({bookStore}) => (
+const AppHeader = observer(() => (
   <div className="App-header">
     <img src={logo} className="App-logo" alt="logo" />
     <h2>Welcome to the React MobX Book shop!</h2>
-    <h3>Data is { bookStore.isLoading ? "Loading..." : "Done."}</h3>
   </div>
 ))
 
@@ -39,11 +38,11 @@ class App extends Component {
   renderPage() {
     switch(this.state.page) {
       case "books":
-        return <BooksPage openBookPage={this.openBookPage} bookStore={this.props.bookStore} />
+        return <BooksPage openBookPage={this.openBookPage} />
       case "book":
-        return <BookDetails book={this.state.selectedBook} cartStore={this.props.cartStore}/>
+        return <BookDetails book={this.state.selectedBook} />
       case "cart":
-        return <CartPage cartStore={this.props.cartStore} />
+        return <CartPage />
       default:
         return "Sry, not found"
     }
@@ -73,7 +72,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <AppHeader bookStore={this.props.bookStore} />
+        <AppHeader />
         <AppMenu>
           <AppMenuItem onClick={this.openBooksPage}>Available books</AppMenuItem>
           <AppMenuItem onClick={this.openCartPage}>Your cart</AppMenuItem>
