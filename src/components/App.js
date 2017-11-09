@@ -5,6 +5,27 @@ import './App.css'
 import Books from "./Books"
 import BookDetails from "./BookDetails"
 import Cart from "./Cart"
+import {observer} from 'mobx-react';
+
+const AppHeader = observer(({bookStore}) => (
+  <div className="App-header">
+    <img src={logo} className="App-logo" alt="logo" />
+    <h2>Welcome to the React MobX Book shop!</h2>
+    <h3>Data is { bookStore.isLoading ? "Loading..." : "Done."}</h3>
+  </div>
+))
+
+const AppMenu = ({children}) => (
+  <ul className="App-menu">
+    {children}
+  </ul>
+)
+
+const AppMenuItem = ({onClick, children}) => (
+    <li>
+      <a onClick={onClick}>{children}</a>
+    </li>
+)
 
 class App extends Component {
   constructor(p, x) {
@@ -52,7 +73,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <AppHeader />
+        <AppHeader bookStore={this.props.bookStore} />
         <AppMenu>
           <AppMenuItem onClick={this.openBooksPage}>Available books</AppMenuItem>
           <AppMenuItem onClick={this.openCartPage}>Your cart</AppMenuItem>
@@ -64,23 +85,5 @@ class App extends Component {
 
 }
 
-const AppHeader = () => (
-  <div className="App-header">
-    <img src={logo} className="App-logo" alt="logo" />
-    <h2>Welcome to the React MobX Book shop!</h2>
-  </div>
-)
-
-const AppMenu = ({children}) => (
-  <ul className="App-menu">
-    {children}
-  </ul>
-)
-
-const AppMenuItem = ({onClick, children}) => (
-    <li>
-      <a onClick={onClick}>{children}</a>
-    </li>
-)
 
 export default App

@@ -21,15 +21,15 @@ class BookStore {
   }
 
   @action loadBooks() {
-    this.loading = true;
+    this.isLoading = true;
     this.fetch("books.json")
-      .then(json => {
-        this.updateBooks(json);
-        this.isLoading = false;
-      })
-      .catch(err => {
-        console.error("Failed to load books", err);
-      })
+    .then(json => {
+      this.updateBooks(json);
+      this.isLoading = false;
+    })
+    .catch(err => {
+      console.error("Failed to load books", err);
+    })
   }
 
   @action updateBooks(json) {
