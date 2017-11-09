@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import logo from '../logo.svg'
 import './App.css'
 
-import Books from "./Books"
+import BooksPage from "./BooksPage"
 import BookDetails from "./BookDetails"
-import Cart from "./Cart"
+import CartPage from "./CartPage";
 import {observer} from 'mobx-react';
 
 const AppHeader = observer(({bookStore}) => (
@@ -39,11 +39,11 @@ class App extends Component {
   renderPage() {
     switch(this.state.page) {
       case "books":
-        return <Books openBookPage={this.openBookPage} bookStore={this.props.bookStore} />
+        return <BooksPage openBookPage={this.openBookPage} bookStore={this.props.bookStore} />
       case "book":
-        return <BookDetails book={this.state.selectedBook} />
+        return <BookDetails book={this.state.selectedBook} cartStore={this.props.cartStore}/>
       case "cart":
-        return <Cart />
+        return <CartPage cartStore={this.props.cartStore} />
       default:
         return "Sry, not found"
     }

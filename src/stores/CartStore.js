@@ -5,6 +5,7 @@ class CartStore {
   @observable entries = [];
 
   constructor(bookStore) {
+    // Not sure yet why cartStore takes a bookstore..
     this.bookStore = bookStore;
   }
 
@@ -39,3 +40,5 @@ class CartStore {
     this.entries.clear();
   }
 }
+
+export { CartStore as default };

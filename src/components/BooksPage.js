@@ -1,7 +1,7 @@
 import React from 'react'
 import {observer} from 'mobx-react';
 
-const Books = observer(({openBookPage, bookStore}) => (
+const BooksPage = observer(({openBookPage, bookStore}) => (
   <section className="Page-books">
     <h1>Available books</h1>
     <ol>
@@ -20,4 +20,4 @@ const BookEntry = observer(({onClickEntry, book}) => (
   </li>
 ))
 
-export default Books
+export default BooksPage
